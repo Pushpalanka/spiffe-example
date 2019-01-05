@@ -25,4 +25,10 @@ services:
     tty: true
     links:
     - spire-server
+  wso2is:
+    build: ./wso2-is
+    hostname: wso2-is
+    tty: true
+    links:
+      - spire-server
 

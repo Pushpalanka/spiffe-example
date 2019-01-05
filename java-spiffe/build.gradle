@@ -3,6 +3,9 @@ buildscript {
 
     repositories {
         mavenCentral()
+        wso2 {
+            url 'http://maven.wso2.org/nexus/content/groups/wso2-public/'
+        }
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"

@@ -1,15 +1,17 @@
 package spiffe.api.provider;
 
+import oauth.OAuthClientCreationException;
+import oauth.OAuthDCRClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.SSLEngine;
-import javax.net.ssl.X509ExtendedTrustManager;
 import java.net.Socket;
 import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Optional;
+import javax.net.ssl.SSLEngine;
+import javax.net.ssl.X509ExtendedTrustManager;
 
 import static java.lang.String.format;
 import static spiffe.api.provider.CertificateUtils.getSpiffeId;
@@ -41,6 +43,7 @@ public class SpiffeTrustManager extends X509ExtendedTrustManager  {
     @Override
     public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         checkPeer(chain);
+
     }
 
     /**
@@ -117,6 +120,12 @@ public class SpiffeTrustManager extends X509ExtendedTrustManager  {
                 String errorMessage = format("%s is not a trusted service", workloadId);
                 LOGGER.error(errorMessage);
                 throw new CertificateException(errorMessage);
+            }
+            //if the client is trusted create an OAuth client in the authorization server.
+            try {
+                OAuthDCRClient.createApplication();
+            } catch (OAuthClientCreationException e) {
+                throw new CertificateException(format("OAuth client could not be created for the workload %s", workloadId));
             }
         } else {
             throw new CertificateException("No Spiffe ID in the certificate");
