@@ -19,7 +19,8 @@ RUN curl --silent --location ${TOMCAT_RELEASE} | tar -xzf -
 RUN mv apache-tomcat-${TOMCAT_VERSION} ${TOMCAT_DIR}
 
 # Install Spiffe Security Provider
-COPY spiffe-provider-0.1.0.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/
+#COPY spiffe-provider-0.1.0.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/
+COPY spiffe-provider-0.4.0.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/
 
 # Configure Spire
 WORKDIR ${SPIRE_DIR}
