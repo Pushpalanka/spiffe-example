@@ -79,7 +79,7 @@
 
         <Connector
                 protocol="org.apache.coyote.http11.Http11NioProtocol"
-                port="8443"
+                port="9443"
                 maxThreads="200"
                 scheme="https"
                 secure="true"

@@ -20,7 +20,7 @@ RUN mv apache-tomcat-${TOMCAT_VERSION} ${TOMCAT_DIR}
 
 # Install Spiffe Security Provider
 #COPY spiffe-provider-0.1.0.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/
-COPY spiffe-provider-0.4.0.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/
+COPY spiffe-provider-0.4.0-all.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/
 
 # Configure Spire
 WORKDIR ${SPIRE_DIR}
@@ -32,4 +32,5 @@ ARG WSO2_DIR=/opt/wso2-is
 RUN wget --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download"  http://product-dist.wso2.com/products/identity-server/5.7.0/wso2is-5.7.0.zip
 RUN unzip wso2is-5.7.0.zip
 RUN mv ${WSO2IS_VERSION} ${WSO2_DIR}
+#COPY spiffe-provider-0.4.0.jar ${WSO2_DIR}/repository/components/lib/
 

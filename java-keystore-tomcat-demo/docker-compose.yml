@@ -29,6 +29,9 @@ services:
     build: ./wso2-is
     hostname: wso2-is
     tty: true
+    ports:
+    - 9443:9443
     links:
       - spire-server
+
 
