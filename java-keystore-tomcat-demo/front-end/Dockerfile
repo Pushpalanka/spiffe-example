@@ -12,9 +12,12 @@ COPY frontend.security /opt/front-end
 
 RUN mkdir /opt/sslCurl
 COPY sslCurl.jar /opt/sslCurl
+COPY example-1.0-jar-with-dependencies.jar /opt/sslCurl
 COPY curl.security /opt/sslCurl
 COPY sslCurl.sh /opt/sslCurl
+COPY sslCurl2.sh /opt/sslCurl
 RUN chmod +x /opt/sslCurl/sslCurl.sh
+RUN chmod +x /opt/sslCurl/sslCurl2.sh
 
 #Create users for frontend workloads
 RUN useradd frontend1 -u 1000

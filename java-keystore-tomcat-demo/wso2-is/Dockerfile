@@ -11,6 +11,9 @@ RUN mkdir /opt/wso2-authz
 COPY start-wso2.sh /opt/wso2-authz
 COPY catalina-server.xml /opt/wso2-is/repository/conf/tomcat/catalina-server.xml
 COPY log4j.properties /opt/wso2-is/repository/conf/log4j.properties
+COPY identity.xml /opt/wso2-is/repository/conf/identity.xml
+COPY authenticators.xml /opt/wso2-is/repository/conf/security/authenticators.xml
+COPY org.wso2.carbon.identity.oauth2.token.handler.clientauth.mutualtls-2.0.3-SNAPSHOT.jar /opt/wso2-is/repository/components/dropins/
 RUN chmod +x /opt/wso2-authz/start-wso2.sh
 
 COPY java.security /opt/wso2-authz
